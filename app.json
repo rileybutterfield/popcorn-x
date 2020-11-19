@@ -2,7 +2,7 @@
   "expo": {
     "name": "Popcorn",
     "slug": "Popcorn",
-    "version": "1.0.0",
+    "version": "38.0.8",
     "orientation": "portrait",
     "icon": "./app/assets/favicon.png",
     "splash": {

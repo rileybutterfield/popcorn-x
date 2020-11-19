@@ -22,7 +22,9 @@ function WelcomeScreen(props) {
         <AppButton
         title="login"
         color="red"
-        onPress={() => console.log("pressed")} />
+        onPress={() =>
+        console.log("pressed")
+        } />
         <AppButton
           title="Register"
           color="darkGold"
