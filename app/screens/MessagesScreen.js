@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
+import AppText from "../components/AppText";
 import ListItem from "../components/ListItem";
 import ListItemDeleteAction from "../components/ListItemDeleteAction";
 import ListItemSeparator from "../components/ListItemSeparator";
 import Screen from "../components/Screen";
+import colors from "../config/colors";
 
 const initialMessages = [
   {
@@ -30,7 +32,8 @@ function MessagesScreen(props) {
     setMessages(messages.filter((m) => m.id !== message.id));
   };
   return (
-    <Screen>
+    <Screen style={styles.screen}>
+       <AppText style={styles.title}>Messages</AppText>
       <FlatList
         data={messages}
         keyExtractor={(message) => message.id.toString()}
@@ -62,6 +65,18 @@ function MessagesScreen(props) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  screen: {
+    paddingVertical: 20,
+    backgroundColor: colors.light,
+  },
+  title: {
+    fontSize: 35,
+    fontWeight: "bold",
+    color: colors.red,
+    marginBottom: 15,
+    alignSelf: "center"
+  }
+});
 
 export default MessagesScreen;

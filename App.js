@@ -19,12 +19,12 @@ export default function App() {
   return (
     // <LoginScreen />
     // <RegisterScreen />
-    <WelcomeScreen />
+    // <WelcomeScreen />
     // <AccountScreen />
     // <MatchesScreen />
     // <MessagesScreen />
     // <AddFriendScreen />
     // <MovieDetailsScreen />
-    // <SwipeScreen />
+    <SwipeScreen />
   );
 }

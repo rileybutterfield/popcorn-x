@@ -40,7 +40,7 @@ const movies = [
 function MatchesScreen(props) {
   return (
     <Screen style={styles.screen}>
-      <AppText style={styles.title}>Our Matches</AppText>
+      <AppText style={styles.title}>Our Movie Matches</AppText>
       <FlatList
         data={movies}
         keyExtractor={(movie) => movie.id.toString()}
@@ -63,10 +63,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.light,
   },
   title: {
-    fontSize: 30,
+    fontSize: 35,
     fontWeight: "bold",
     color: colors.darkBlue,
-    paddingBottom: 20
+    marginBottom: 15,
+    alignSelf: "center"
   }
 });
 
