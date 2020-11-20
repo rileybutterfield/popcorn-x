@@ -13,7 +13,7 @@ const movie = {
     title: "Ratatouille",
     runtime: "120 minutes",
     genre: "Kids",
-    image: {uri:"https://sites.psu.edu/favoriteanimatedmovies/files/2017/03/ratatouille-25z0vgo.jpg"},
+    image: "https://sites.psu.edu/favoriteanimatedmovies/files/2017/03/ratatouille-25z0vgo.jpg",
     description: "This is the Ratatouille description"
   }
 

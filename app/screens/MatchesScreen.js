@@ -6,7 +6,7 @@ import AppText from "../components/AppText";
 import Card from "../components/Card";
 import colors from "../config/colors";
 import routes from "../navigation/routes"
-import listingsApi from "../api/listings"
+import moviesApi from "../api/movies"
 
 // const movies = [
 //   {
@@ -44,29 +44,31 @@ import listingsApi from "../api/listings"
 // ];
 
 function MatchesScreen({navigation}) {
-  const [listings, setListings] = useState({})
+  const [movies, setMovies] = useState({})
 
   useEffect(()=> {
-    loadListings()
+    loadMovies()
   }, [])
 
-  const loadListings = async () => {
-    const response = await listingsApi.getListings()
-    setListings(response.data)
+  const loadMovies = async () => {
+    const response = await moviesApi.getMovies()
+    setMovies(response.data)
+    console.log(movies)
   }
+
 
   return (
     <Screen style={styles.screen}>
       <AppText style={styles.title}>Our Movie Matches</AppText>
       <FlatList
-        data={listings}
+        data={movies}
         keyExtractor={(movie) => movie.id.toString()}
         renderItem={({ item }) => (
           <Card
             title={item.title}
             runtime={"Runtime: " + item.runtime}
             genre={"Genre: " + item.genre}
-            image={item.images[0].url}
+            image={item.image}
             onPress={()=> navigation.navigate(routes.MOVIE_DETAILS, item)}
           />
         )}
