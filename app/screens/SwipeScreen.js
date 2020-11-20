@@ -51,13 +51,13 @@ const styles = StyleSheet.create({
   swipeables: {
     flexDirection: "row",
     justifyContent: "space-around",
-    marginTop: 40
+    marginTop: 20
   },
   title: {
     fontSize: 35,
     fontWeight: "bold",
     color: colors.darkGold,
-    marginBottom: 40,
+    marginBottom: 20,
     alignSelf: "center"
   }
 });

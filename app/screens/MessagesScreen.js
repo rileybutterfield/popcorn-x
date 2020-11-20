@@ -33,7 +33,6 @@ function MessagesScreen(props) {
   };
   return (
     <Screen style={styles.screen}>
-       <AppText style={styles.title}>Messages</AppText>
       <FlatList
         data={messages}
         keyExtractor={(message) => message.id.toString()}
@@ -67,16 +66,9 @@ function MessagesScreen(props) {
 
 const styles = StyleSheet.create({
   screen: {
-    paddingVertical: 20,
+    paddingVertical: 10,
     backgroundColor: colors.light,
   },
-  title: {
-    fontSize: 35,
-    fontWeight: "bold",
-    color: colors.red,
-    marginBottom: 15,
-    alignSelf: "center"
-  }
 });
 
 export default MessagesScreen;
