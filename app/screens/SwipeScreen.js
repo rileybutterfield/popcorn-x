@@ -13,9 +13,10 @@ const movie = {
     runtime: "120 minutes",
     genre: "Kids",
     image: {uri:"https://sites.psu.edu/favoriteanimatedmovies/files/2017/03/ratatouille-25z0vgo.jpg"},
+    description: "This is the Ratatouille description"
   }
 
-function SwipeScreen(props) {
+function SwipeScreen({navigation}) {
   return (
     <Screen style={styles.screen}>
       <AppText style={styles.title}>Pick Your Flicks!</AppText>
@@ -24,6 +25,7 @@ function SwipeScreen(props) {
         runtime={"Runtime: " + movie.runtime}
         genre={"Genre: " + movie.genre}
         image={movie.image}
+        onPress={()=> navigation.navigate("MovieDetails", movie)}
       />
       <View style={styles.swipeables}>
       <Icon
