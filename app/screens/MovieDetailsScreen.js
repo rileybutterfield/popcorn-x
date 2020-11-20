@@ -6,10 +6,10 @@ import colors from "../config/colors";
 
 function MovieDetailsScreen({route}) {
   const movie = route.params
-  console.log(route)
+
   return (
     <View>
-      <Image style={styles.image} source={movie.image} />
+      <Image style={styles.image} source={{uri: movie.image}} />
       <View style={styles.detailsContainer}>
         <AppText style={styles.title}>{movie.title}</AppText>
         <AppText style={styles.subtitles}>{movie.runtime}</AppText>

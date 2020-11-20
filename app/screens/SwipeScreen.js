@@ -1,5 +1,5 @@
-import React from "react";
-import {FlatList, StyleSheet, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import {Button, FlatList, StyleSheet, View } from "react-native";
 
 import Screen from "../components/Screen";
 import AppText from "../components/AppText";
@@ -7,17 +7,23 @@ import Icon from "../components/Icon";
 import Card from "../components/Card";
 import colors from "../config/colors";
 import routes from "../navigation/routes"
+import moviesApi from "../api/movies"
 
-const movie = {
-    id: 2,
-    title: "Ratatouille",
-    runtime: "120 minutes",
-    genre: "Kids",
-    image: "https://sites.psu.edu/favoriteanimatedmovies/files/2017/03/ratatouille-25z0vgo.jpg",
-    description: "This is the Ratatouille description"
-  }
 
 function SwipeScreen({navigation}) {
+  const [movie, setMovie] = useState({})
+
+  useEffect(()=> {
+    const number = Math.floor(Math.random() * 5) + 1
+    loadMovie(number)
+  }, [])
+
+  const loadMovie = async (number) => {
+    const response = await moviesApi.getSingleMovie(number)
+    setMovie(response.data)
+  }
+
+
   return (
     <Screen style={styles.screen}>
       <AppText style={styles.title}>Pick Your Flicks!</AppText>
@@ -29,6 +35,10 @@ function SwipeScreen({navigation}) {
         onPress={()=> navigation.navigate(routes.MOVIE_DETAILS, movie)}
       />
       <View style={styles.swipeables}>
+      {/* <Button
+      title="Click"
+      onPress={()=> loadMovie(Math.floor(Math.random() * 5) + 1)}
+      /> */}
       <Icon
       name="thumb-down"
       size={80}
