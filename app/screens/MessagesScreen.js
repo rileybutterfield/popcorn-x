@@ -7,6 +7,7 @@ import ListItemSeparator from "../components/ListItemSeparator";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
 
+
 const initialMessages = [
   {
     id: 1,

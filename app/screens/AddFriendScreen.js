@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.darkBlue,
+    textAlign: "center",
     fontWeight: "bold",
     alignSelf: "center",
     margin: 15

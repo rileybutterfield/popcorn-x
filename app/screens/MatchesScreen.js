@@ -1,60 +1,73 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
 
 import Screen from "../components/Screen";
 import AppText from "../components/AppText";
 import Card from "../components/Card";
 import colors from "../config/colors";
+import routes from "../navigation/routes"
+import listingsApi from "../api/listings"
 
-const movies = [
-  {
-    id: 1,
-    title: "Batman",
-    runtime: "120 minutes",
-    genre: "Superhero",
-    image: {uri: "https://i.ytimg.com/vi/8BIObSCQWLs/maxresdefault.jpg"},
-    description: "This is the Batman description"
-  },
-  {
-    id: 2,
-    title: "Ratatouille",
-    runtime: "120 minutes",
-    genre: "Kids",
-    image: {uri:"https://sites.psu.edu/favoriteanimatedmovies/files/2017/03/ratatouille-25z0vgo.jpg"},
-    description: "This is the Ratatouille description"
-  },
-  {
-    id: 3,
-    title: "She's All That",
-    runtime: "120 minutes",
-    genre: "90's Teen",
-    image: {uri: "https://images-na.ssl-images-amazon.com/images/I/51Iuj5srm4L._SX342_.jpg"},
-    description: "This is the She's All That description"
-  },
-  {
-    id: 4,
-    title: "Lord of the Rings",
-    runtime: "240 minutes",
-    genre: "Fantasy/Adventure",
-    image: require("../assets/popcorn.png"), //sample for if image exists in project
-    description: "This is the Lord of the Rings description"
-  },
-];
+// const movies = [
+//   {
+//     id: 1,
+//     title: "Batman",
+//     runtime: "120 minutes",
+//     genre: "Superhero",
+//     image: {uri: "https://i.ytimg.com/vi/8BIObSCQWLs/maxresdefault.jpg"},
+//     description: "This is the Batman description"
+//   },
+//   {
+//     id: 2,
+//     title: "Ratatouille",
+//     runtime: "120 minutes",
+//     genre: "Kids",
+//     image: {uri:"https://sites.psu.edu/favoriteanimatedmovies/files/2017/03/ratatouille-25z0vgo.jpg"},
+//     description: "This is the Ratatouille description"
+//   },
+//   {
+//     id: 3,
+//     title: "She's All That",
+//     runtime: "120 minutes",
+//     genre: "90's Teen",
+//     image: {uri: "https://images-na.ssl-images-amazon.com/images/I/51Iuj5srm4L._SX342_.jpg"},
+//     description: "This is the She's All That description"
+//   },
+//   {
+//     id: 4,
+//     title: "Lord of the Rings",
+//     runtime: "240 minutes",
+//     genre: "Fantasy/Adventure",
+//     image: require("../assets/popcorn.png"), //sample for if image exists in project
+//     description: "This is the Lord of the Rings description"
+//   },
+// ];
 
 function MatchesScreen({navigation}) {
+  const [listings, setListings] = useState({})
+
+  useEffect(()=> {
+    loadListings()
+  }, [])
+
+  const loadListings = async () => {
+    const response = await listingsApi.getListings()
+    setListings(response.data)
+  }
+
   return (
     <Screen style={styles.screen}>
       <AppText style={styles.title}>Our Movie Matches</AppText>
       <FlatList
-        data={movies}
+        data={listings}
         keyExtractor={(movie) => movie.id.toString()}
         renderItem={({ item }) => (
           <Card
             title={item.title}
             runtime={"Runtime: " + item.runtime}
             genre={"Genre: " + item.genre}
-            image={item.image}
-            onPress={()=> navigation.navigate("MovieDetails", item)}
+            image={item.images[0].url}
+            onPress={()=> navigation.navigate(routes.MOVIE_DETAILS, item)}
           />
         )}
       />

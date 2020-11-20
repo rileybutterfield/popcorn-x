@@ -6,6 +6,7 @@ import AppText from "../components/AppText";
 import Icon from "../components/Icon";
 import Card from "../components/Card";
 import colors from "../config/colors";
+import routes from "../navigation/routes"
 
 const movie = {
     id: 2,
@@ -25,7 +26,7 @@ function SwipeScreen({navigation}) {
         runtime={"Runtime: " + movie.runtime}
         genre={"Genre: " + movie.genre}
         image={movie.image}
-        onPress={()=> navigation.navigate("MovieDetails", movie)}
+        onPress={()=> navigation.navigate(routes.MOVIE_DETAILS, movie)}
       />
       <View style={styles.swipeables}>
       <Icon

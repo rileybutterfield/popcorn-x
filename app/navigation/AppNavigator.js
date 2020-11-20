@@ -8,6 +8,7 @@ import AccountScreen from '../screens/AccountScreen'
 import FeedNavigator from "./FeedNavigator"
 import AccountNavigator from "./AccountNavigator"
 import MatchesButton from './MatchesButton';
+import routes from "../navigation/routes"
 
 const Tab = createBottomTabNavigator()
 
@@ -21,10 +22,10 @@ const AppNavigator = () => (
       <MaterialCommunityIcons name="movie-open" color={color} size={size}/>
     }}
      />
-    <Tab.Screen name="Feed"
+    <Tab.Screen name="Swipe"
     component={FeedNavigator}
     options={({navigation}) => ({
-    tabBarButton: () => <MatchesButton onPress={()=> navigation.navigate("Feed")}/>,
+    tabBarButton: () => <MatchesButton onPress={()=> navigation.navigate(routes.SWIPE)}/>,
     })}
     />
     <Tab.Screen
