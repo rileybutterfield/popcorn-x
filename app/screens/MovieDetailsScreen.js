@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, View, StyleSheet } from "react-native";
+import { Image, View, StyleSheet, ScrollView } from "react-native";
 import AppText from "../components/AppText";
 import colors from "../config/colors";
 
@@ -8,16 +8,16 @@ function MovieDetailsScreen({route}) {
   const movie = route.params
 
   return (
-    <View>
+    <ScrollView>
       <Image style={styles.image} source={{uri: movie.image}} />
       <View style={styles.detailsContainer}>
         <AppText style={styles.title}>{movie.title}</AppText>
-        <AppText style={styles.subtitles}>{movie.runtime}</AppText>
+        <AppText style={styles.subtitles}>Runtime: {movie.runtime}</AppText>
         <AppText style={styles.subtitles}>Genre: {movie.genre}</AppText>
         <AppText style={styles.description}>{movie.description}
         </AppText>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 

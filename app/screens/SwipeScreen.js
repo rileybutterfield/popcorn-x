@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {Button, FlatList, StyleSheet, View } from "react-native";
+import {StyleSheet, View } from "react-native";
 
 import Screen from "../components/Screen";
 import AppText from "../components/AppText";
@@ -8,13 +8,15 @@ import Card from "../components/Card";
 import colors from "../config/colors";
 import routes from "../navigation/routes"
 import moviesApi from "../api/movies"
+import { TouchableOpacity } from "react-native";
+
 
 
 function SwipeScreen({navigation}) {
   const [movie, setMovie] = useState({})
 
   useEffect(()=> {
-    const number = Math.floor(Math.random() * 5) + 1
+    const number = Math.floor(Math.random() * 6) + 1
     loadMovie(number)
   }, [])
 
@@ -39,16 +41,22 @@ function SwipeScreen({navigation}) {
       title="Click"
       onPress={()=> loadMovie(Math.floor(Math.random() * 5) + 1)}
       /> */}
+      <TouchableOpacity
+      onPress={()=>console.log("pressed")}>
       <Icon
       name="thumb-down"
       size={80}
       backgroundColor={colors.darkBlue}
       />
+      </TouchableOpacity>
+      <TouchableOpacity
+      onPress={()=>console.log("pressed")}>
       <Icon
       name="cards-heart"
       size={80}
       backgroundColor={colors.red}
       />
+      </TouchableOpacity>
       </View>
     </Screen>
   );
