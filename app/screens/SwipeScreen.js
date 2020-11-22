@@ -28,6 +28,9 @@ function SwipeScreen({navigation}) {
 
   const authContext = useContext(AuthContext)
   const user = authContext.user
+  // console.log(user)
+
+
 
   return (
     <Screen style={styles.screen}>
@@ -46,6 +49,7 @@ function SwipeScreen({navigation}) {
       /> */}
       <TouchableOpacity
       onPress={()=>console.log("pressed")}>
+
       <Icon
       name="thumb-down"
       size={80}
