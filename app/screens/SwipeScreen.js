@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {StyleSheet, View } from "react-native";
+import { TouchableOpacity } from "react-native";
 
 import Screen from "../components/Screen";
 import AppText from "../components/AppText";
@@ -8,7 +9,7 @@ import Card from "../components/Card";
 import colors from "../config/colors";
 import routes from "../navigation/routes"
 import moviesApi from "../api/movies"
-import { TouchableOpacity } from "react-native";
+import AuthContext from "../auth/context";
 
 
 
@@ -25,6 +26,8 @@ function SwipeScreen({navigation}) {
     setMovie(response.data)
   }
 
+  const authContext = useContext(AuthContext)
+  const user = authContext.user
 
   return (
     <Screen style={styles.screen}>

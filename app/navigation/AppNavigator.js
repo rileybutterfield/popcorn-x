@@ -11,7 +11,7 @@ import routes from "../navigation/routes"
 const Tab = createBottomTabNavigator()
 
 const AppNavigator = () => (
-  <Tab.Navigator>
+  <Tab.Navigator initialRouteName="Swipe">
     <Tab.Screen
     name="Matches"
     component={MatchesScreen}
