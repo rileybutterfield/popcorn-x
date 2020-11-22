@@ -3,8 +3,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import {MaterialCommunityIcons} from "@expo/vector-icons"
 
 import MatchesScreen from '../screens/MatchesScreen'
-import SwipeScreen from '../screens/SwipeScreen'
-import AccountScreen from '../screens/AccountScreen'
 import FeedNavigator from "./FeedNavigator"
 import AccountNavigator from "./AccountNavigator"
 import MatchesButton from './MatchesButton';
@@ -13,7 +11,7 @@ import routes from "../navigation/routes"
 const Tab = createBottomTabNavigator()
 
 const AppNavigator = () => (
-  <Tab.Navigator>
+  <Tab.Navigator initialRouteName="Swipe">
     <Tab.Screen
     name="Matches"
     component={MatchesScreen}

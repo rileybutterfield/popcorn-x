@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, StyleSheet, Text, View,} from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
@@ -18,23 +18,27 @@ import Screen from './app/components/Screen';
 import AuthNavigator from "./app/navigation/AuthNavigator"
 import AppNavigator from "./app/navigation/AppNavigator"
 import navigationTheme from "./app/navigation/navigationTheme"
+import AuthContext from './app/auth/context';
 
+// <LoginScreen />
+// <RegisterScreen />
+// <WelcomeScreen />
+// <AccountScreen />
+// <MatchesScreen />
+// <MessagesScreen />
+// <AddFriendScreen />
+// <MovieDetailsScreen />
+// // <SwipeScreen />
 
 export default function App() {
   console.log("App executed!")
+  const [user, setUser] = useState();
 
   return (
-    // <LoginScreen />
-    // <RegisterScreen />
-    // <WelcomeScreen />
-    // <AccountScreen />
-    // <MatchesScreen />
-    // <MessagesScreen />
-    // <AddFriendScreen />
-    // <MovieDetailsScreen />
-    // // <SwipeScreen />
+    <AuthContext.Provider value={{user, setUser}}>
     <NavigationContainer theme={navigationTheme}>
-      <AppNavigator />
+      {user ? <AppNavigator /> : <AuthNavigator />}
     </NavigationContainer>
+    </AuthContext.Provider>
   );
 }
