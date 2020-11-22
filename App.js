@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, StyleSheet, Text, View,} from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import {MaterialCommunityIcons} from "@expo/vector-icons"
+import {AppLoading} from "expo"
 
 import LoginScreen from "./app/screens/LoginScreen";
 import RegisterScreen from "./app/screens/RegisterScreen";
@@ -19,7 +20,7 @@ import AuthNavigator from "./app/navigation/AuthNavigator"
 import AppNavigator from "./app/navigation/AppNavigator"
 import navigationTheme from "./app/navigation/navigationTheme"
 import AuthContext from './app/auth/context';
-
+import authStorage from './app/auth/storage';
 // <LoginScreen />
 // <RegisterScreen />
 // <WelcomeScreen />
@@ -33,6 +34,17 @@ import AuthContext from './app/auth/context';
 export default function App() {
   console.log("App executed!")
   const [user, setUser] = useState();
+  const [isReady, setIsReady] = useState(false)
+
+
+  const restoreToken = async () => {
+    const token = await authStorage.getToken()
+    if(!token) return
+    setUser(token)
+  }
+
+  if(!isReady)
+  return <AppLoading startAsync={restoreToken} onFinish={() => setIsReady(true)}  />
 
   return (
     <AuthContext.Provider value={{user, setUser}}>

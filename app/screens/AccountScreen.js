@@ -7,7 +7,7 @@ import Screen from "../components/Screen";
 import colors from "../config/colors";
 import ListItemSeparatorComponent from "../components/ListItemSeparator";
 import AuthContext from "../auth/context";
-import { USER_FACING_NOTIFICATIONS } from "expo-permissions";
+import authStorage from "../auth/storage";
 
 const menuItems = [
   {
@@ -37,6 +37,13 @@ const menuItems = [
 
 function AccountScreen({navigation}) {
   const {user, setUser} = useContext(AuthContext)
+
+  const handleLogout = async () => {
+    setUser(null)
+    await authStorage.removeToken()
+    const result = await authStorage.getToken()
+  }
+
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
@@ -69,7 +76,7 @@ function AccountScreen({navigation}) {
         title="Log Out"
         IconComponent={<Icon name="logout" backgroundColor={colors.lightGold}
         />}
-        onPress={() => setUser(null)}
+        onPress={handleLogout}
       />
     </Screen>
   );

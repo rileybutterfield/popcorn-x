@@ -14,6 +14,7 @@ import {
 
 import colors from "../config/colors";
 import AuthContext from "../auth/context";
+import authStorage from "../auth/storage";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -24,7 +25,9 @@ let error = ""
 
 function LoginScreen(props) {
   const authContext = useContext(AuthContext)
+
   const [loginFailed, setLoginFailed] = useState(false)
+
   const handleSubmit = async ({email, password}) => {
    const result = await authApi.login(email, password)
    if(!result.ok) {
@@ -33,6 +36,7 @@ function LoginScreen(props) {
    setLoginFailed(false)
    const user = result.data
    authContext.setUser(user)
+   authStorage.storeToken(user)
   }
 
   return (

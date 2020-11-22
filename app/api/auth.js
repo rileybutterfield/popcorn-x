@@ -7,6 +7,9 @@ const client = create({
 
 const login = (email, password) => client.post('/auth/login', {email, password})
 
+const register = (userInfo) => client.post('/auth/signup', userInfo)
+
 export default {
-  login
+  login,
+  register
 }
