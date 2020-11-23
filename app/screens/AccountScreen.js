@@ -19,11 +19,12 @@ const menuItems = [
     targetScreen: "Matches"
   },
   {
-    title: "My Friends",
+    title: "Add A Friend",
     icon: {
       name: "account-heart",
       backgroundColor: colors.darkBlue,
     },
+    targetScreen: "AddFriend"
   },
   {
     title: "My Messages",

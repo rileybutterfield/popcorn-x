@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { FlatList, StyleSheet } from "react-native";
 
 import Screen from "../components/Screen";
@@ -6,19 +6,23 @@ import AppText from "../components/AppText";
 import Card from "../components/Card";
 import colors from "../config/colors";
 import routes from "../navigation/routes"
-import moviesApi from "../api/movies"
+import matchesApi from "../api/matches"
+import AuthContext from "../auth/context";
 
 
 function MatchesScreen({navigation}) {
-  const [movies, setMovies] = useState({})
+  const authContext = useContext(AuthContext)
+  const user = authContext.user
+
+  const [matches, setMatches] = useState({})
 
   useEffect(()=> {
-    loadMovies()
+    loadMatches()
   }, [])
 
-  const loadMovies = async () => {
-    const response = await moviesApi.getMovies()
-    setMovies(response.data)
+  const loadMatches = async () => {
+    const response = await matchesApi.getMatches(user.id)
+    setMatches(response.data)
   }
 
 
@@ -26,8 +30,8 @@ function MatchesScreen({navigation}) {
     <Screen style={styles.screen}>
       <AppText style={styles.title}>Our Movie Matches</AppText>
       <FlatList
-        data={movies}
-        keyExtractor={(movie) => movie.id.toString()}
+        data={matches}
+        keyExtractor={(match) => match.movieId.toString()}
         renderItem={({ item }) => (
           <Card
             title={item.title}

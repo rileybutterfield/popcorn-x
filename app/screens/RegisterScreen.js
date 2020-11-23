@@ -8,6 +8,7 @@ import authApi from '../api/auth'
 import AuthContext from "../auth/context";
 import authStorage from "../auth/storage";
 
+
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
   email: Yup.string().required().email().label("Email"),
@@ -19,6 +20,7 @@ function RegisterScreen() {
 
   const [registerFailed, setRegisterFailed] = useState(false)
 
+
   let error = ""
 
   const handleSubmit = async (userInfo) => {
@@ -29,8 +31,9 @@ function RegisterScreen() {
     setRegisterFailed(false)
     const user = result.data
     authContext.setUser(user)
-    authStorage.storeToken(user)
+    // authStorage.storeToken(user)
    }
+
   return (
     <Screen style={styles.container}>
       <Image style={styles.logo} source={require("../assets/p_logo.png")} />
@@ -69,7 +72,7 @@ function RegisterScreen() {
         <SubmitButton title="Register" />
       </AppForm>
     </Screen>
-  );
+  )
 }
 
 const styles = StyleSheet.create({

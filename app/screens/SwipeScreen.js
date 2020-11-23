@@ -10,6 +10,7 @@ import colors from "../config/colors";
 import routes from "../navigation/routes"
 import moviesApi from "../api/movies"
 import AuthContext from "../auth/context";
+import likesApi from '../api/likes'
 
 
 
@@ -17,8 +18,7 @@ function SwipeScreen({navigation}) {
   const [movie, setMovie] = useState({})
 
   useEffect(()=> {
-    const number = Math.floor(Math.random() * 6) + 1
-    loadMovie(number)
+    loadMovie(Math.floor(Math.random() * 85) + 1)
   }, [])
 
   const loadMovie = async (number) => {
@@ -28,8 +28,19 @@ function SwipeScreen({navigation}) {
 
   const authContext = useContext(AuthContext)
   const user = authContext.user
-  // console.log(user)
 
+  const handleLikePress = async() => {
+    const requestInfo = {
+      userId: user.id,
+      movieId: movie.id
+    }
+    const result = await likesApi.postLike(requestInfo)
+    loadMovie(Math.floor(Math.random() * 85) + 1)
+  }
+
+  const handleDislikePress = () => {
+    loadMovie(Math.floor(Math.random() * 85) + 1)
+  }
 
 
   return (
@@ -43,26 +54,21 @@ function SwipeScreen({navigation}) {
         onPress={()=> navigation.navigate(routes.MOVIE_DETAILS, movie)}
       />
       <View style={styles.swipeables}>
-      {/* <Button
-      title="Click"
-      onPress={()=> loadMovie(Math.floor(Math.random() * 5) + 1)}
-      /> */}
       <TouchableOpacity
-      onPress={()=>console.log("pressed")}>
-
-      <Icon
-      name="thumb-down"
-      size={80}
-      backgroundColor={colors.darkBlue}
-      />
+      onPress={handleDislikePress}>
+        <Icon
+        name="thumb-down"
+        size={80}
+        backgroundColor={colors.darkBlue}
+        />
       </TouchableOpacity>
       <TouchableOpacity
-      onPress={()=>console.log("pressed")}>
-      <Icon
-      name="cards-heart"
-      size={80}
-      backgroundColor={colors.red}
-      />
+      onPress={handleLikePress}>
+        <Icon
+        name="cards-heart"
+        size={80}
+        backgroundColor={colors.red}
+        />
       </TouchableOpacity>
       </View>
     </Screen>

@@ -36,7 +36,8 @@ function LoginScreen(props) {
    setLoginFailed(false)
    const user = result.data
    authContext.setUser(user)
-   authStorage.storeToken(user)
+   console.log("USER: ", user, "TYPE USER: ", typeof user)
+  //  authStorage.storeToken(user)
   }
 
   return (
