@@ -13,18 +13,25 @@ import AuthContext from "../auth/context";
 function MatchesScreen({navigation}) {
   const authContext = useContext(AuthContext)
   const user = authContext.user
+  const [didMount, setDidMount] = useState(false);
+
+
 
   const [matches, setMatches] = useState({})
-
-  useEffect(()=> {
-    loadMatches()
-  }, [])
-
   const loadMatches = async () => {
     const response = await matchesApi.getMatches(user.id)
     setMatches(response.data)
   }
 
+  useEffect(()=> {
+    setDidMount(true);
+    loadMatches()
+    return () => setDidMount(false);
+  }, [])
+
+  if(!didMount) {
+    return null;
+  }
 
   return (
     <Screen style={styles.screen}>

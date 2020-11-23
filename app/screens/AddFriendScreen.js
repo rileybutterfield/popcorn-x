@@ -36,13 +36,12 @@ function AddFriendScreen(props) {
       return setAddFriendFailed(true)}
     setAddFriendFailed(false)
     setAddedFriend(result.data)
-
   }
 
   if(addFriendFailed === false){
     return (
     <Screen style={styles.container}>
-    <AppText style={styles.text}>Friend added! Start swiping to build a movie list with {addedFriend.name}!</AppText>
+    <AppText style={styles.text}>Friend added! Start swiping to build a movie list with your pal!</AppText>
     </Screen>)
   }
 

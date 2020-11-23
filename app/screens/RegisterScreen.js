@@ -30,6 +30,7 @@ function RegisterScreen() {
       return setRegisterFailed(true)}
     setRegisterFailed(false)
     const user = result.data
+    console.log(user)
     authContext.setUser(user)
     // authStorage.storeToken(user)
    }
