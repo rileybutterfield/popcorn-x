@@ -9,3 +9,5 @@ _An NPM library and graphical user interface that allows users to build SQL quer
 - Apisauce
 - PostgreSQL database & Node.js/Espress back end hosted on heroku (repo at https://github.com/rileybutterfield/popcorn_backend)
 
+## Demo
+View this app using Expo at https://expo.io/@rileybutterfield/projects/Popcorn. If you don't want to register for a new account and add a friend, you can log in with the demo account using email: cody@email.com, password: 1235. Have fun swiping!
